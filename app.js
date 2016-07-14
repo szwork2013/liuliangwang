@@ -31,7 +31,7 @@ var initConfig = {
 };
 var payment = new Payment(initConfig);
 var models  = require('./models');
-app.set('port', process.env.PORT || 3003);
+app.set('port', process.env.PORT || 3004);
 app.enable('verbose errors');
 app.use(express.static(__dirname + '/public'));
 connectAssets = require("connect-assets")({
