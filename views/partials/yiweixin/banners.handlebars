@@ -1,0 +1,13 @@
+<header id="myCarousel">
+  <ul class="bxslider">
+    {{#each banners}}
+      <li><img style="width: 900px;" src="{{ image }}"/></li>
+    {{/each}}
+  </ul>
+</header>
+
+<script>
+$(document).ready(function(){
+  $('.bxslider').bxSlider();
+});
+</script>

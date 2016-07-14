@@ -1,0 +1,17 @@
+var config = {
+                'token': '',
+                'appId': '',
+                'aesKey': '',
+                'appSecret': '',
+                'mchId': '',
+                'partnerKey' :'',
+                'upload_path': '',
+                'hostname': '',
+                'maxfileuploadsize': 10240000, // 10m
+                'max_depth': 3,
+                "xinhaoba_loginname": "",
+                "xinhaoba_apikey": "",
+                "dazhong_client_id": "",
+                "dazhong_apikey": ""
+              };
+module.exports = config;
