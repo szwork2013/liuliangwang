@@ -4,7 +4,7 @@ VALUES
   (2, '中国移动 全国流量', 0, 96, 1, '2016-01-20 11:08:09', '2016-04-21 20:47:26'),
   (3, '广东移动 全国流量', 0, 3, 1, '2016-01-21 17:47:33', '2016-04-21 20:46:36');
 
-INSERT INTO `TrafficGroups` (`name`, `providerId`, `sortNum`, `display`, `createdAt`, `updatedAt`)
+INSERT INTO `TrafficGroups` (`id`, `name`, `providerId`, `sortNum`, `display`, `createdAt`, `updatedAt`)
 VALUES
   (4, '中国联通', 1, 1, 0, '2016-01-20 11:08:26', '2016-04-21 21:08:08'),
   (5, '中国电信', 2, 1, 0, '2016-01-20 11:08:40', '2016-04-21 21:07:59');
