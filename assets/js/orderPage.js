@@ -13,7 +13,7 @@ $(document).ready(function () {
     });
 
     bindChargetype()
-    
+    bindCheckIntergral()
     $('#submit').click(function () {
         var tel = $('#tel').text()
         var flowId = $('input[name=flowId]').val()
@@ -68,7 +68,15 @@ function bindChargetype() {
         $('#' + window.chargetype).show()
     })
 }
-
+/**
+ * 绑定积分选择事件
+ */
+function bindCheckIntergral() {
+    $('#check-intergral').click(function () {
+        var checked = $('input[type=checkbox]').is(':checked')
+        $('input[type=checkbox]').attr('checked', !checked)
+    })
+}
 /**
  * 流量套餐支付
  * @param phone 电话
