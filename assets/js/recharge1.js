@@ -163,7 +163,7 @@ function trafficplanEvent() {
     $('.info').click(function () {
         var info = $(this).siblings('p').text() || '还没有详情'
         //console.log(info)
-        $('#detail .modal-body').text(info)
+        $('#detail .modal-body textarea').text(info)
     })
 
     // 进入订单页面

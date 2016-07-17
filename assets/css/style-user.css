@@ -139,7 +139,7 @@ div.cell-active {
 	border: 1px solid #0089bf;
 }
 
-div.cell h5 {
+div.cell h5 h4{
 	color: #3d87b4;
 	margin: 4px;
 }
@@ -150,8 +150,7 @@ div.cell p {
 	margin: 2px;
 }
 
-div.cell span {
-	font-size: 5px;
+div.cell div {
 	color: #afafaf;
 }
 

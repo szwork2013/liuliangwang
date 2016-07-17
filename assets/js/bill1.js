@@ -55,7 +55,7 @@ function trafficplanEvent() {
         var info = $(this).siblings('p').text() || '还没有详情'
         // alert(info)
         // console.log(info)
-        $('#detail .modal-body').text(info)
+        $('#detail .modal-body textarea').text(info)
     })
 
     // 进入订单页面
