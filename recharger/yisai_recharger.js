@@ -57,13 +57,13 @@ function YiSai(orderId, phone, ProId) {
 
         var inerSuccessCallback = this.successCallback;
         var inerErrCallback = this.errCallback;
-
+        var that = this
         request(this.options, function (error, res) {
             if (!error && res.statusCode == 200) {
                 if (inerSuccessCallback) {
                     var parser =  new xml2js.Parser({explicitArray : false, ignoreAttrs : true})
                     parser.parseString(res.body.trim(), function (err, result) {
-                        inerSuccessCallback(result)
+                        inerSuccessCallback.call(that, res, result)
                     })
                 }
             } else {
