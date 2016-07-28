@@ -154,7 +154,7 @@ module.exports = function(sequelize, DataTypes) {
         }else if(trafficPlan.type == typeJson['流量通']){
           return new Liuliangtong(this.id, this.phone, trafficPlan.value)
         }else if(trafficPlan.type == typeJson['易赛']){
-          return new YiSai(this.id, this.phone, trafficPlan.bid)
+          return new YiSai(this.out_trade_no, this.phone, trafficPlan.bid)
         }else{
           function Empty(){
             var that = this
