@@ -6,7 +6,6 @@ var express = require('express');
 var app = express.Router();
 var models  = require('../../models');
 var async = require("async")
-var xml2js = require('xml2js')
 var recharger = require("../../recharger")
 var Xinhaoba = recharger.Xinhaoba
 var Dazhong = recharger.Dazhong
@@ -35,8 +34,6 @@ app.get('/test_ys', function (req, res) {
         res.write(JSON.stringify(err))
         res.end()
     }).do()
-
-
 })
 /**
  * 易赛查看订单结果
@@ -54,20 +51,17 @@ app.get('/test_ys_result', function (req, res) {
 })
 
 app.post('/recharger_yisai', function (req, res) {
-    console.log('post ', req.body)
+    //console.log('post ', req.body)
 
     async.waterfall([
         function (next) {
-            var parser =  new xml2js.Parser({explicitArray : false, ignoreAttrs : true})
-            parser.parseString(req.body, function (err, result) {
-                next(null, result.Esaipay)
-            })
+            next(null, req.body)
         },
         function (reqinfo, next) {
             models.ExtractOrder.findOne({
                 where : {  out_trade_no: reqinfo.OutOrderNumber }
             }).then(function (extractOrder) {
-                if(reqinfo.Result == 'success'){
+                if(reqinfo.PayResult == '2'){
                     extractOrder.updateAttributes({
                         state: models.ExtractOrder.STATE.FINISH
                     }).then(function(extractOrder){
@@ -79,15 +73,15 @@ app.post('/recharger_yisai', function (req, res) {
                     extractOrder.updateAttributes({
                         state: models.ExtractOrder.STATE.FAIL
                     })
-                    next(new Error(reqinfo.Remark))
                 }
             }).catch(function (err) {
                 next(err)
             })
         }
-    ],function (err, result) {
-        if(!err && result){
-
+    ],function (err, extractOrder) {
+        if(!err && extractOrder){
+            res.write('<?xml version="1.0" encoding="utf-8"?><Esaipay><Result>success</Result><Message>接收成功</Message></Esaipay>')
+            res.end()
         }
     })
 
