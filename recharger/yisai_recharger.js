@@ -8,7 +8,6 @@ var crypto = require('crypto')
 var moment = require('moment')
 var xml2js = require('xml2js')
 var iconv = require('iconv-lite')
-var Buffer = require("buffer").Buffer;
 
 
 function YiSai(orderId, phone, ProId) {
@@ -78,6 +77,7 @@ function YiSai(orderId, phone, ProId) {
     }
 
     this.testRecharge = testRecharge
+    this.rechargeResult = rechargeResult
     this.md5 = getMd5;
     return this;
 
@@ -125,7 +125,45 @@ function YiSai(orderId, phone, ProId) {
                 console.log(err)
             }
         });
+    }
 
+    /**
+     * 产品信息查询接口
+     * @param InOrderNumber
+     * @param OutOrderNumber
+     */
+    function rechargeResult(InOrderNumber, OutOrderNumber, callback) {
+        var options = {
+            uri: 'http://llbchongzhi.esaipai.com/IRechargeResult_Flow',
+            method: 'POST',
+            qs: {
+                'UserNumber': UserNumber,
+                'InOrderNumber': InOrderNumber,
+                'OutOrderNumber': OutOrderNumber,
+                'Remark': '300',
+                'RecordKey': '',
+            }
+        }
+
+        options.qs.RecordKey = recordKey(options.qs.UserNumber,
+            options.qs.InOrderNumber,
+            options.qs.OutOrderNumber,
+            options.qs.Remark,
+            UserSystemKey,// UserSystemKey
+            UserCustomerKey)
+
+        console.log(options)
+        request(options, function (error, res) {
+            if (!error && res.statusCode == 200) {
+                var parser =  new xml2js.Parser({explicitArray : false, ignoreAttrs : true})
+                parser.parseString(res.body.trim(), function (err, result) {
+                    console.log(result)
+                    callback(result)
+                })
+            } else {
+                console.log(err)
+            }
+        });
 
     }
     /**
