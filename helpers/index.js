@@ -967,6 +967,22 @@ function autoCharge(extractOrder, trafficPlan, next){
           })
           next(new Error(data.Message))
         }
+      }else if(trafficPlan.type == models.TrafficPlan.TYPE['易赛']){
+        if(data.Esaipay.Result == 'success'){
+          extractOrder.updateAttributes({
+            taskid: data.Esaipay.InOrderNumber,
+            state: models.ExtractOrder.STATE.SUCCESS
+          }).then(function(extractOrder){
+            next(null, trafficPlan, extractOrder)
+          }).catch(function(err) {
+            next(err)
+          })
+        }else{
+          extractOrder.updateAttributes({
+            state: models.ExtractOrder.STATE.FAIL
+          })
+          next(new Error(data.Esaipay.Remark))
+        }
       }else{
         extractOrder.updateAttributes({
           state: models.ExtractOrder.STATE.FAIL

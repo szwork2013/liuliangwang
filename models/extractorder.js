@@ -7,6 +7,7 @@ var recharger = require("../recharger")
 var Xinhaoba = recharger.Xinhaoba
 var Dazhong = recharger.Dazhong
 var Liuliangtong = recharger.Liuliangtong
+var YiSai = recharger.YiSai
 var config = require("../config")
 var crypto = require('crypto')
 
@@ -152,6 +153,8 @@ module.exports = function(sequelize, DataTypes) {
           return new Dazhong(this.phone, this.bid, this.id)
         }else if(trafficPlan.type == typeJson['流量通']){
           return new Liuliangtong(this.id, this.phone, trafficPlan.value)
+        }else if(trafficPlan.type == typeJson['易赛']){
+          return new YiSai(this.id, this.phone, trafficPlan.bid)
         }else{
           function Empty(){
             var that = this
