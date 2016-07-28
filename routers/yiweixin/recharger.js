@@ -37,11 +37,11 @@ app.get('/test_ys', function (req, res) {
 
 })
 
-app.get('recharger_yisai', function (req, res) {
+app.get('/recharger_yisai', function (req, res) {
     console.log('get ', req.body.trim())
 })
 
-app.post('recharger_yisai', function (req, res) {
+app.post('/recharger_yisai', function (req, res) {
     console.log('post ', req.body.trim())
 })
 
