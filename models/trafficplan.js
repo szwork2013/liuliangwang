@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
       getTrafficPlanByGroup: function(models, providerId, province, customer, coupons, pass){
         var groupParams = {
             providerId: providerId,
-            $or : [ { name : {$like : '%'+province+'%'}},{ name : {$like : '%中国%'}}]
+            $or : [ { name : {$like : '%'+province+'%'}},{ name : {$like : '%中国%'}},{ name : {$like : '%全国%'}}]
           }
         if(customer){
           groupParams['display'] = true
