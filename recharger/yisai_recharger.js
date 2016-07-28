@@ -15,6 +15,7 @@ function YiSai(orderId, phone, ProId) {
     var UserNumber = config.yisai_UserNumber
     var UserSystemKey = config.yisai_UserSystemKey
     var UserCustomerKey = config.yisai_UserCustomerKey
+    var CallBackUrl = config.yisai_CallBackUrl
 
     this.options = {
         uri: 'http://llbchongzhi.esaipai.com/IRecharge_Flow',
@@ -28,7 +29,7 @@ function YiSai(orderId, phone, ProId) {
             'StartTime': createTime(),
             'TimeOut': '300',
             'Remark': '300',
-            'CallBackUrl': '',
+            'CallBackUrl': CallBackUrl,
             'RecordKey': '',
         }
     }
